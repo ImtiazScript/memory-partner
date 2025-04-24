@@ -105,6 +105,20 @@ const CkEditor: React.FC<MyEditorProps> = ({ id, value, onChange }) => {
 
   return (
     <div style={{ position: "relative" }}>
+      <style jsx global>{`
+        .ck-editor__editable {
+          color: #000 !important;
+          background-color: #fff !important;
+        }
+        .ck.ck-editor__editable {
+          color: #000 !important;
+          background-color: #fff !important;
+        }
+        .ck.ck-content {
+          color: #000 !important;
+          background-color: #fff !important;
+        }
+      `}</style>
       <CKEditor
         editor={ClassicEditor}
         data={value}
