@@ -25,6 +25,16 @@ const CkEditor: React.FC<MyEditorProps> = ({ id, value, onChange }) => {
         `${window.innerHeight - 45}px`,
         editor.editing.view.document.getRoot()
       );
+      writer.setStyle(
+        "color",
+        "#000",
+        editor.editing.view.document.getRoot()
+      );
+      writer.setStyle(
+        "background-color",
+        "#fff",
+        editor.editing.view.document.getRoot()
+      );
     });
   };
 
@@ -105,20 +115,6 @@ const CkEditor: React.FC<MyEditorProps> = ({ id, value, onChange }) => {
 
   return (
     <div style={{ position: "relative" }}>
-      <style jsx global>{`
-        .ck-editor__editable {
-          color: #000 !important;
-          background-color: #fff !important;
-        }
-        .ck.ck-editor__editable {
-          color: #000 !important;
-          background-color: #fff !important;
-        }
-        .ck.ck-content {
-          color: #000 !important;
-          background-color: #fff !important;
-        }
-      `}</style>
       <CKEditor
         editor={ClassicEditor}
         data={value}
