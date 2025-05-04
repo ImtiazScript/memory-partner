@@ -32,4 +32,7 @@ a {
   background: #fff !important;
   color: #000 !important;
   transition: none !important;
+  border-color: #e0e0e0 !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
