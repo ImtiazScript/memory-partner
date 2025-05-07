@@ -45,3 +45,23 @@ a {
 .ck-editor__main {
   background: #fff !important;
 }
+
+/* Set consistent height for CKEditor */
+.ck.ck-editor {
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.ck-editor__main {
+  flex: 1 !important;
+  height: calc(100vh - 40px) !important; /* Adjust 40px based on your toolbar height */
+  overflow-y: auto !important;
+}
+
+.ck-editor__editable,
+.ck.ck-editor__editable,
+.ck.ck-content {
+  height: 100% !important;
+  min-height: 100% !important;
+}
