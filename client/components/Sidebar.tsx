@@ -204,8 +204,50 @@ export default function SideBar(props: any) {
             )}
             
             {isLoading ? (
-              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
-                <CircularProgress sx={{ color: '#63B668' }} />
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  justifyContent: 'center', 
+                  alignItems: 'center', 
+                  height: 'calc(100vh - 200px)',
+                  gap: '20px'
+                }}
+              >
+                <CircularProgress 
+                  sx={{ 
+                    color: '#63B668',
+                    animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    '@keyframes pulse': {
+                      '0%, 100%': {
+                        opacity: 1,
+                        transform: 'scale(1)',
+                      },
+                      '50%': {
+                        opacity: 0.7,
+                        transform: 'scale(0.95)',
+                      },
+                    },
+                  }} 
+                  size={40}
+                />
+                <Typography 
+                  variant="body2" 
+                  sx={{ 
+                    color: '#63B668',
+                    animation: 'fadeInOut 2s ease-in-out infinite',
+                    '@keyframes fadeInOut': {
+                      '0%, 100%': {
+                        opacity: 0.5,
+                      },
+                      '50%': {
+                        opacity: 1,
+                      },
+                    },
+                  }}
+                >
+                  Loading your memories...
+                </Typography>
               </Box>
             ) : (
               contextMemories.map((memory: any) => (
