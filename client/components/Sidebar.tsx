@@ -26,6 +26,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import MyProfile from "./MyProfile";
 import Login from "./Login";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function SideBar(props: any) {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ export default function SideBar(props: any) {
   const contextMemories = useSelector(
     (state: RootState) => state.context.memories
   );
+  const [isLoading, setIsLoading] = useState(false);
   const isMobileScreen =
     typeof window !== "undefined" && window.innerWidth < 601;
   const router = useRouter();
@@ -42,15 +44,18 @@ export default function SideBar(props: any) {
 
   useEffect(() => {
     if (!contextMemories.length) {
+      setIsLoading(true);
       try {
         fetch("http://localhost:3001/memories/list", {
           method: "GET",
         }).then(async (response: any) => {
           const memories = await response.json();
           dispatch({ type: "UPDATE_MEMORIES", payload: memories });
+          setIsLoading(false);
         });
       } catch (error) {
         console.log(error);
+        setIsLoading(false);
       }
     }
   }, [contextMemories]);
@@ -197,10 +202,57 @@ export default function SideBar(props: any) {
                 </ListItem>
               </>
             )}
-            {(selectedIcon === "viewMemories" || selectedIcon === "HomeIcon") &&
+            
+            {isLoading ? (
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  justifyContent: 'center', 
+                  alignItems: 'center', 
+                  height: 'calc(100vh - 200px)',
+                  gap: '20px'
+                }}
+              >
+                <CircularProgress 
+                  sx={{ 
+                    color: '#63B668',
+                    animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    '@keyframes pulse': {
+                      '0%, 100%': {
+                        opacity: 1,
+                        transform: 'scale(1)',
+                      },
+                      '50%': {
+                        opacity: 0.7,
+                        transform: 'scale(0.95)',
+                      },
+                    },
+                  }} 
+                  size={40}
+                />
+                <Typography 
+                  variant="body2" 
+                  sx={{ 
+                    color: '#63B668',
+                    animation: 'fadeInOut 2s ease-in-out infinite',
+                    '@keyframes fadeInOut': {
+                      '0%, 100%': {
+                        opacity: 0.5,
+                      },
+                      '50%': {
+                        opacity: 1,
+                      },
+                    },
+                  }}
+                >
+                  Loading your memories...
+                </Typography>
+              </Box>
+            ) : (
               contextMemories.map((memory: any) => (
-                <div>
-                  <ListItem key={memory.id} disablePadding>
+                <div key={memory.id}>
+                  <ListItem disablePadding>
                     <ListItemButton
                       onClick={() => {
                         handleListItemClick();
@@ -221,7 +273,8 @@ export default function SideBar(props: any) {
                   </ListItem>
                   <Divider />
                 </div>
-              ))}
+              ))
+            )}
             {selectedIcon === "showProfile" && <MyProfile />}
             {selectedIcon === "showLogin" && <Login />}
           </List>
