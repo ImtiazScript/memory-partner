@@ -13,29 +13,32 @@
     margin: 0;
     padding: 0;
     position: fixed;
+    background: linear-gradient(180deg, #384FB7 0%, #2d3748 100%);
 }
 
 .sidebar-header {
-    background-color: #384FB7;
+    background: linear-gradient(135deg, #384FB7 0%, #63B668 100%);
     color: #ffffff;
     font-size: 15px;
     text-align: center;
-    padding: 4px;
+    padding: 12px;
     width: 100%;
     position: sticky;
     top: 0;
     z-index: 3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar a {
     display: block;
-    color: black;
+    color: #ffffff;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: white;
+    background-color: rgba(99, 182, 104, 0.1);
+    color: #63B668;
 }
 
 .sidebar-drawer {
@@ -44,10 +47,18 @@
 }
 
 .sidebar-icons-tray {
-    background-color: #63B668;
+    background: linear-gradient(180deg, #384FB7 0%, #2d3748 100%);
     max-width: 50px;
     overflow-y: hidden;
     margin-left: -5px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Force all icons in sidebar-icons-tray to be white */
+.sidebar-icons-tray svg,
+.sidebar-icons-tray .MuiSvgIcon-root {
+    color: #fff !important;
+    fill: #fff !important;
 }
 
 .sidebar-content {
@@ -55,6 +66,69 @@
     overflow-y: auto;
     box-sizing: border-box;
     z-index: 1;
+    background: #2d3748;
+}
+
+/* Material-UI component styles */
+.sidebar .MuiListItemIcon-root {
+    color: #ffffff !important;
+    min-width: 40px;
+}
+
+.sidebar .MuiListItemText-primary {
+    color: #ffffff !important;
+    font-size: 0.9rem;
+}
+
+.sidebar .MuiListItemButton-root:hover .MuiListItemIcon-root {
+    color: #63B668 !important;
+}
+
+.sidebar .MuiListItemButton-root:hover .MuiListItemText-primary {
+    color: #63B668 !important;
+}
+
+/* Override Material-UI Typography styles */
+.sidebar .MuiTypography-root,
+.sidebar .MuiTypography-body1,
+.sidebar .MuiTypography-body2,
+.sidebar .MuiTypography-h6,
+.sidebar .css-e784if-MuiTypography-root,
+.sidebar p,
+.sidebar div {
+    color: #ffffff !important;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.43 !important;
+    letter-spacing: 0.01071em !important;
+}
+
+.sidebar .MuiDivider-root {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.sidebar .MuiListItemButton-root {
+    color: #ffffff !important;
+}
+
+.sidebar .MuiListItemButton-root:hover {
+    background-color: rgba(99, 182, 104, 0.1) !important;
+}
+
+/* Override Material-UI ListItemText styles */
+.sidebar .MuiListItemText-root .MuiTypography-root {
+    color: #ffffff !important;
+}
+
+/* Override Material-UI ListItem styles */
+.sidebar .MuiListItem-root {
+    color: #ffffff !important;
+}
+
+/* Override Material-UI List styles */
+.sidebar .MuiList-root {
+    color: #ffffff !important;
 }
 
 /* only applicable for mobile screen */
@@ -63,22 +137,23 @@
     /* Mobile header */
     .mobile-header {
         display: flex;
-        /* Initially hide the header */
         align-items: center;
         justify-content: center;
-        background-color: #384FB7;
+        background: linear-gradient(135deg, #384FB7 0%, #63B668 100%);
         color: #ffffff;
         font-size: 15px;
         text-align: center;
-        padding: 4px;
+        padding: 12px;
         width: 100%;
         position: sticky;
         top: 0;
         z-index: 3;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .mobile-header button {
         margin-left: 16px;
+        color: #ffffff;
     }
 
     .large-sidebar-header {
@@ -98,13 +173,13 @@
     
     .sidebar-flex {
         flex-grow: 1;
-        flex-basis: 20%; /* 1/4th of the container */
+        flex-basis: 20%;
         display: flex;
         flex-direction: column;
     }
     
     .content-flex {
-        flex-grow: 4; /* 3/4th of the container */
+        flex-grow: 4;
         flex-basis: 80%;
         display: flex;
         flex-direction: column;
@@ -119,11 +194,37 @@
     }
 
     .fullscreen-header {
-        background-color: #384FB7;
+        background: linear-gradient(135deg, #384FB7 0%, #63B668 100%);
         color: #ffffff;
         font-size: 15px;
         text-align: center;
-        padding: 4px;
+        padding: 12px;
         width: 100%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+    background: #63B668;
+    border-radius: 3px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: #384FB7;
+}
+
+/* Force all text and icons in sidebar-content to be white */
+.sidebar-content, .sidebar-content * {
+    color: #fff !important;
+    fill: #fff !important;
+    border-color: rgba(255,255,255,0.1) !important;
 }

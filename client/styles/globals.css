@@ -24,3 +24,15 @@ a {
     background: black;
   }
 }
+
+/* Force CKEditor editable area to always have white background and black text */
+.ck-editor__editable,
+.ck.ck-editor__editable,
+.ck.ck-content {
+  background: #fff !important;
+  color: #000 !important;
+  transition: none !important;
+  border-color: #e0e0e0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
